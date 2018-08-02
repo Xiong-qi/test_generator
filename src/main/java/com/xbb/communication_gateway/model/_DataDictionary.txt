@@ -1,0 +1,127 @@
+Table: dict_item
+------------+-------------+------+-----+---------+---------
+ Field      | Type        | Null | Key | Default | Remarks 
+------------+-------------+------+-----+---------+---------
+ id         | VARCHAR(36) | NO   | PRI |         | 字典主键    
+ code       | VARCHAR(45) | YES  |     |         | 字典代码    
+ name       | VARCHAR(45) | YES  |     |         | 字典名称    
+ position   | INT(10)     | YES  |     |         | 字典位置，用于排序
+ dictTypeId | VARCHAR(36) | YES  |     |         | 字典类型主键，外键到字典类型表
+------------+-------------+------+-----+---------+---------
+
+Table: dict_type
+-------+-------------+------+-----+---------+---------
+ Field | Type        | Null | Key | Default | Remarks 
+-------+-------------+------+-----+---------+---------
+ id    | VARCHAR(36) | NO   | PRI |         | 主键      
+ code  | VARCHAR(50) | NO   |     |         | 字典类型代码  
+ name  | VARCHAR(50) | YES  |     |         | 字典类型名称  
+-------+-------------+------+-----+---------+---------
+
+Table: log
+------------+----------------------+------+-----+---------+---------
+ Field      | Type                 | Null | Key | Default | Remarks 
+------------+----------------------+------+-----+---------+---------
+ id         | CHAR(36)             | NO   | PRI |         | 主键      
+ url        | VARCHAR(500)         | YES  |     |         | 请求地址    
+ method     | VARCHAR(200)         | YES  |     |         | 请求方法    
+ ip         | VARCHAR(200)         | YES  |     |         | IP地址    
+ parameters | LONGTEXT(2147483647) | YES  |     |         | 请求参数    
+ result     | LONGTEXT(2147483647) | YES  |     |         | 结果      
+ createTime | DATETIME(19)         | YES  |     |         |         
+------------+----------------------+------+-----+---------+---------
+
+Table: menu
+----------+--------------+------+-----+---------+---------
+ Field    | Type         | Null | Key | Default | Remarks 
+----------+--------------+------+-----+---------+---------
+ id       | VARCHAR(36)  | NO   | PRI |         | 主键      
+ text     | VARCHAR(100) | YES  |     |         | 菜单文本    
+ iconCls  | VARCHAR(100) | YES  |     |         | 菜单css   
+ url      | VARCHAR(100) | YES  |     |         | 菜单地址    
+ parentId | VARCHAR(36)  | YES  |     |         | 父菜单主键（外键到菜单表主键）
+ position | INT(10)      | YES  |     |         | 菜单位置，用于进行菜单排序
+ menuType | VARCHAR(45)  | YES  |     |         | 菜单类型    
+----------+--------------+------+-----+---------+---------
+
+Table: region
+---------------+--------------+------+-----+---------+---------
+ Field         | Type         | Null | Key | Default | Remarks 
+---------------+--------------+------+-----+---------+---------
+ id            | VARCHAR(36)  | NO   | PRI |         | 主键      
+ areaName      | VARCHAR(80)  | NO   |     |         | 区域名称    
+ areaType      | VARCHAR(80)  | NO   |     |         | 区域类型    
+ remarkMessage | VARCHAR(255) | YES  |     |         | 备注信息    
+ rankNum       | INT(10)      | YES  |     |         | 排序号     
+ status        | VARCHAR(36)  | NO   |     |         | 状态      
+ updataTime    | DATETIME(19) | YES  |     |         | 更新时间    
+ parentId      | VARCHAR(36)  | YES  |     |         | 父id     
+---------------+--------------+------+-----+---------+---------
+
+Table: role
+----------+-------------+------+-----+---------+---------
+ Field    | Type        | Null | Key | Default | Remarks 
+----------+-------------+------+-----+---------+---------
+ id       | VARCHAR(36) | NO   | PRI |         | 主键      
+ roleName | VARCHAR(36) | YES  |     |         | 角色名称    
+ roleCode | VARCHAR(36) | YES  |     |         | 角色代码    
+----------+-------------+------+-----+---------+---------
+
+Table: role_menu
+--------+-------------+------+-----+---------+---------
+ Field  | Type        | Null | Key | Default | Remarks 
+--------+-------------+------+-----+---------+---------
+ id     | VARCHAR(36) | NO   | PRI |         | 主键      
+ roleId | VARCHAR(36) | YES  |     |         | 外键到角色表主键
+ menuId | VARCHAR(36) | YES  |     |         | 外键到菜单表主键
+--------+-------------+------+-----+---------+---------
+
+Table: student
+-------+--------------+------+-----+---------+---------
+ Field | Type         | Null | Key | Default | Remarks 
+-------+--------------+------+-----+---------+---------
+ id    | VARCHAR(36)  | NO   | PRI |         |         
+ name  | VARCHAR(100) | YES  |     |         |         
+ age   | INT(10)      | YES  |     |         |         
+ phone | VARCHAR(20)  | YES  |     |         |         
+-------+--------------+------+-----+---------+---------
+
+Table: tb_test
+-----------+-------------+------+-----+---------+---------
+ Field     | Type        | Null | Key | Default | Remarks 
+-----------+-------------+------+-----+---------+---------
+ id        | VARCHAR(50) | NO   | PRI |         |         
+ test_name | VARCHAR(50) | YES  |     |         |         
+ test_url  | VARCHAR(50) | YES  |     |         |         
+ test_text | VARCHAR(50) | YES  |     |         |         
+-----------+-------------+------+-----+---------+---------
+
+Table: test
+-----------+-------------+------+-----+---------+---------
+ Field     | Type        | Null | Key | Default | Remarks 
+-----------+-------------+------+-----+---------+---------
+ id        | VARCHAR(50) | NO   | PRI |         |         
+ name      | VARCHAR(50) | YES  |     |         |         
+ text_desc | VARCHAR(50) | YES  |     |         |         
+-----------+-------------+------+-----+---------+---------
+
+Table: user
+----------+--------------+------+-----+---------+---------
+ Field    | Type         | Null | Key | Default | Remarks 
+----------+--------------+------+-----+---------+---------
+ id       | VARCHAR(36)  | NO   | PRI |         | 主键      
+ username | VARCHAR(100) | YES  |     |         | 用户名     
+ password | VARCHAR(100) | YES  |     |         | 密码      
+ realname | VARCHAR(100) | YES  |     |         | 真实姓名    
+ phone    | VARCHAR(16)  | YES  |     |         | 联系电话    
+----------+--------------+------+-----+---------+---------
+
+Table: user_role
+--------+-------------+------+-----+---------+---------
+ Field  | Type        | Null | Key | Default | Remarks 
+--------+-------------+------+-----+---------+---------
+ id     | VARCHAR(36) | NO   | PRI |         | 主键      
+ userId | VARCHAR(36) | YES  |     |         | 外键到用户表主键
+ roleId | VARCHAR(36) | YES  |     |         | 外键到角色表主键
+--------+-------------+------+-----+---------+---------
+
